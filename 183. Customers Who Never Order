@@ -1,0 +1,8 @@
+import pandas as pd
+
+def find_customers(customers: pd.DataFrame, orders: pd.DataFrame) -> pd.DataFrame:
+    df = pd.merge(customers, orders, how='left', left_on='id', right_on='customerId')
+    # return df
+    df = df[df['id_y'].isna()]
+    df =  df[['name']].reset_index().rename(columns={'name':'Customers'})
+    return df[['Customers']]
